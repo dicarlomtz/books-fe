@@ -1,12 +1,18 @@
 import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
-import { purpleTheme } from './purple'
+import PropTypes from 'prop-types'
 
-export const AppTheme = children => {
+import { customTheme } from './theme'
+
+export const AppTheme = ({ children }) => {
   return (
-    <ThemeProvider theme={ purpleTheme }>
+    <ThemeProvider theme={ customTheme }>
         <CssBaseline />
         { children }
     </ThemeProvider>
   )
+}
+
+AppTheme.propTypes = {
+  children: PropTypes.element
 }

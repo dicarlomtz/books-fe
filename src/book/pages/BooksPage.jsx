@@ -1,4 +1,3 @@
-import React from 'react'
 import { useSearchBooks } from '../../hooks/book/useSearchBooks'
 
 export const BooksPage = () => {

@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material/styles'
 
-export const purpleTheme = createTheme({
-  pallete: {
+export const customTheme = createTheme({
+  palette: {
     primary: {
       main: '#011627'
     },
