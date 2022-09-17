@@ -1,6 +1,6 @@
 # Books FRONTEND HOW TO GUIDE
 
-To run this project, you will need to have install [NPM](https://docs.npmjs.com/cli/v7/configuring-npm/install) and [YARN](https://yarnpkg.com/getting-started/install)
+To run this project, you will need to have installed [NPM](https://docs.npmjs.com/cli/v7/configuring-npm/install) and [YARN](https://yarnpkg.com/getting-started/install)
 
 # Steps:
 
