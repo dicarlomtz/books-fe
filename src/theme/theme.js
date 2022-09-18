@@ -17,5 +17,14 @@ export const customTheme = createTheme({
     success: {
       main: '#2EC4B6'
     }
+  },
+  components: {
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: 'muibutton' }
+        }
+      ]
+    }
   }
 })

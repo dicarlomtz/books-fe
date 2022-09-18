@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+
 import { getAllBooks, getAllBooksBySearch } from '../../api'
 
 export const searchParameters = {
@@ -9,10 +10,16 @@ export const searchParameters = {
   publishedYear: 'published_year'
 }
 
-export const useSearchBooks = ({
-  page = 1, parameter = searchParameters.all,
-  searchValue = '', available = true
-}) => {
+const initialParameters = {
+  page: 1,
+  parameter: searchParameters.all,
+  searchValue: '',
+  available: true
+}
+
+export const useSearchBooks = (parameters = initialParameters) => {
+  const { page, parameter, searchValue, available } = parameters
+
   const [currentPage, setCurrentPage] = useState(page)
 
   const [searchParameter, setSearchParameter] = useState(parameter)

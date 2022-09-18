@@ -14,5 +14,5 @@ export const AppTheme = ({ children }) => {
 }
 
 AppTheme.propTypes = {
-  children: PropTypes.element
+  children: PropTypes.element.isRequired
 }

@@ -22,8 +22,14 @@ export const getAllBooks = async (pageNumber) => {
 
 export const getAllBooksBySearch = async (pageNumber, searchParameter, searchParameterValue, searchAvailableModifier) => {
   try {
-    const { data } = await axios.get(`${BASE_URL}/search/parameter?page=${pageNumber}&search_parameter=${searchParameter}
-    &parameter_value=${searchParameterValue}&available=${searchAvailableModifier}`)
+    const { data } = await axios.get(`${BASE_URL}/search/parameter`, {
+      params: {
+        page: pageNumber,
+        search_parameter: searchParameter,
+        parameter_value: searchParameterValue,
+        available: searchAvailableModifier
+      }
+    })
     const { data: books, last_page: maxPages } = data
     return {
       books,
