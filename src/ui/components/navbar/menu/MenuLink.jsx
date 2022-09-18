@@ -6,7 +6,7 @@ export const MenuLink = ({ link }) => {
   const { to, description } = link
   return (
     <Link underline='none' variant='button' component={ RouterLink } color='inherit' to={to}>
-        {description}
+      {description}
     </Link>
   )
 }

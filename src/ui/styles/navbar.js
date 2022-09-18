@@ -50,6 +50,6 @@ export const linksBoxStyles = {
 }
 
 export const linkStyles = {
-  color: 'inherit',
-  pr: 2
+  my: 2,
+  color: 'inherit'
 }
