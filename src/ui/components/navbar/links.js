@@ -20,7 +20,7 @@ export const user = [
 export const navigation = [
   {
     description: 'Home',
-    to: '/something'
+    to: '/'
   },
   {
     description: 'News',

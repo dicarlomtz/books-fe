@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getAvailableParameter } from '../../hooks'
 
 const BASE_URL = 'http://localhost/books'
 
@@ -20,17 +21,17 @@ export const getAllBooks = async (pageNumber) => {
   }
 }
 
-export const getAllBooksBySearch = async (pageNumber, searchParameter, searchParameterValue, searchAvailableModifier) => {
+export const getAllBooksBySearch = async (pageNumber, searchValue, searchParameter) => {
   try {
-    const { data } = await axios.get(`${BASE_URL}/search/parameter`, {
-      params: {
-        page: pageNumber,
-        search_parameter: searchParameter,
-        parameter_value: searchParameterValue,
-        available: searchAvailableModifier
-      }
-    })
+    const searchValueQuery = searchValue.length ? `&search_value=${searchValue}` : ''
+    const availableValue = getAvailableParameter(searchParameter)
+    const availableValueQuery = availableValue !== null ? `&available=${availableValue}` : ''
+
+    const fullQuery = `${BASE_URL}/search/parameter?page=${pageNumber}${searchValueQuery}${availableValueQuery}`
+
+    const { data } = await axios.get(fullQuery)
     const { data: books, last_page: maxPages } = data
+
     return {
       books,
       maxPages,

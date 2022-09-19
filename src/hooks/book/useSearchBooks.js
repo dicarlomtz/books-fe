@@ -3,29 +3,24 @@ import { useEffect, useState } from 'react'
 import { getAllBooks, getAllBooksBySearch } from '../../api'
 
 export const searchParameters = {
-  all: 'all',
-  title: 'title',
-  authors: 'authors',
-  coAuthors: 'co_authors',
-  publishedYear: 'published_year'
+  all: { key: 'all', display: 'all' },
+  available: { key: 'available', display: 'available' },
+  notAvailable: { key: 'notAvailable', display: 'not available' }
 }
 
 const initialParameters = {
   page: 1,
-  parameter: searchParameters.all,
-  searchValue: '',
-  available: true
+  parameter: searchParameters.all.key,
+  searchValue: ''
 }
 
 export const useSearchBooks = (parameters = initialParameters) => {
-  const { page, parameter, searchValue, available } = parameters
+  const { page, parameter, searchValue } = parameters
 
   const [currentPage, setCurrentPage] = useState(page)
 
   const [searchParameter, setSearchParameter] = useState(parameter)
   const [searchParameterValue, setSearchParameterValue] = useState(searchValue)
-
-  const [searchAvailableModifier, setSearchAvailableModifier] = useState(available)
 
   const [booksInfo, setBooksInfo] = useState({
     books: [],
@@ -34,15 +29,13 @@ export const useSearchBooks = (parameters = initialParameters) => {
   })
 
   useEffect(() => {
-    if (searchParameter === searchParameters.all) {
+    if (searchParameter === searchParameters.all.key && !searchParameterValue.length) {
       getAllBooks(currentPage).then(res => setBooksInfo(res))
     } else {
-      if (searchParameterValue !== '') {
-        getAllBooksBySearch(currentPage, searchParameter, searchParameterValue, searchAvailableModifier)
-          .then(res => setBooksInfo(res))
-      }
+      getAllBooksBySearch(currentPage, searchParameterValue, searchParameter)
+        .then(res => setBooksInfo(res))
     }
-  }, [currentPage, searchParameter, searchParameterValue, searchAvailableModifier])
+  }, [currentPage, searchParameter, searchParameterValue])
 
   const nextPage = () => {
     if (currentPage < booksInfo.maxPages) setCurrentPage(currentPage + 1)
@@ -50,10 +43,6 @@ export const useSearchBooks = (parameters = initialParameters) => {
 
   const previousPage = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1)
-  }
-
-  const modifyAvailableParameter = () => {
-    setSearchAvailableModifier(!searchAvailableModifier)
   }
 
   return {
@@ -66,10 +55,14 @@ export const useSearchBooks = (parameters = initialParameters) => {
 
     searchParameter,
     searchParameterValue,
-    searchAvailableModifier,
 
     setSearchParameter,
-    setSearchParameterValue,
-    modifyAvailableParameter
+    setSearchParameterValue
   }
+}
+
+export const getAvailableParameter = (parameter) => {
+  if (parameter === searchParameters.available.key) return 1
+  if (parameter === searchParameters.notAvailable.key) return 0
+  return null
 }

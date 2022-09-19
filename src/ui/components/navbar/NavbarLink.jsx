@@ -1,4 +1,5 @@
 import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
 import { Link as RouterLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
@@ -8,7 +9,7 @@ export const NavbarLink = ({ link }) => {
   const { to, description } = link
   return (
     <Button component={ RouterLink } sx={ linkStyles } to={ to }>
-        {description}
+      <Typography sx={{ fontWeight: 500 }} align='center'>{description}</Typography>
     </Button>
   )
 }
