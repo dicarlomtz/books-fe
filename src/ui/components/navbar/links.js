@@ -23,8 +23,8 @@ export const navigation = [
     to: '/'
   },
   {
-    description: 'News',
-    to: '/'
+    description: 'Create',
+    to: '/books/create'
   },
   {
     description: 'Contact',

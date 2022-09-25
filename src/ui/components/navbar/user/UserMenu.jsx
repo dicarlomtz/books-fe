@@ -12,15 +12,15 @@ export const UserMenu = () => {
   const { handleOpenUserMenu, anchorElUser, handleCloseUserMenu } = useNavbar()
   return (
     <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title='Open settings'>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="User"/>
+                <Avatar alt='User'/>
               </IconButton>
             </Tooltip>
 
             <Menu
               sx={{ mt: '45px' }}
-              id="menu-appbar"
+              id='menu-appbar'
               anchorEl={anchorElUser}
               anchorOrigin={{
                 vertical: 'top',

@@ -1,1 +1,1 @@
-export * from './views/Navbar'
+export * from '../views/Navbar'

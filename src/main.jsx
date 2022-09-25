@@ -8,11 +8,11 @@ import { BooksApp } from './BooksApp'
 import { store } from './store'
 
 ReactDOM.createRoot(document.querySelector('#root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <BooksApp />
       </BrowserRouter>
     </Provider>
-  </React.StrictMode>
+  // </React.StrictMode>
 )

@@ -1,13 +1,10 @@
-// import { AppRouter } from './router/AppRouter'
-
-import { BooksPage } from './book/pages/BooksPage'
+import { AppRouter } from './router/AppRouter'
 import { AppTheme } from './theme/AppTheme'
 
 export const BooksApp = () => {
   return (
     <AppTheme>
-      {/* <AppRouter /> */}
-    <BooksPage />
+      <AppRouter />
     </AppTheme>
   )
 }

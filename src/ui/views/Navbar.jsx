@@ -6,23 +6,23 @@ import MenuBookIcon from '@mui/icons-material/MenuBook'
 
 import {
   brandIconStyles, brandNameStyles
-} from '../../styles'
-import { ToggleMenu } from '../navbar/toggle/ToggleMenu'
-import { UserMenu } from '../navbar/user/UserMenu'
-import { NavbarLinks } from '../navbar/NavbarLinks'
+} from '../styles'
+import { ToggleMenu } from '../components/navbar/toggle/ToggleMenu'
+import { UserMenu } from '../components/navbar/user/UserMenu'
+import { NavbarLinks } from '../components/navbar/NavbarLinks'
 
 export const Navbar = () => {
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar position='static'>
+      <Container maxWidth='xl'>
         <Toolbar disableGutters>
 
           <MenuBookIcon sx={brandIconStyles} />
           <Typography
-            variant="h6"
+            variant='h6'
             noWrap
-            component="a"
-            href="/"
+            component='a'
+            href='/'
             sx={ brandNameStyles } >
             Boogle
           </Typography>

@@ -19,17 +19,17 @@ export const ToggleMenu = () => {
       <>
         <Box sx={ toggleBox }>
             <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
+                size='large'
+                aria-label='account of current user'
+                aria-controls='menu-appbar'
+                aria-haspopup='true'
                 onClick={handleOpenNavMenu}
-                color="inherit" >
+                color='inherit' >
                 <MenuIcon />
             </IconButton>
 
             <Menu
-                id="menu-appbar"
+                id='menu-appbar'
                 anchorEl={anchorElNav}
                 anchorOrigin={{
                   vertical: 'bottom',
@@ -49,10 +49,10 @@ export const ToggleMenu = () => {
 
         <MenuBookIcon sx={ brandStylesSm } />
         <Typography
-            variant="h5"
+            variant='h5'
             noWrap
-            component="a"
-            href=""
+            component='a'
+            href=''
             sx={ brandNameStylesSm } >
             Boogle
         </Typography>

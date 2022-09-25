@@ -37,21 +37,13 @@ export const useSearchBooks = (parameters = initialParameters) => {
     }
   }, [currentPage, searchParameter, searchParameterValue])
 
-  const nextPage = () => {
-    if (currentPage < booksInfo.maxPages) setCurrentPage(currentPage + 1)
-  }
-
-  const previousPage = () => {
-    if (currentPage > 1) setCurrentPage(currentPage - 1)
-  }
-
   return {
     books: booksInfo.books,
     maxPages: booksInfo.maxPages,
     errorMessage: booksInfo.errorMessage,
 
-    nextPage,
-    previousPage,
+    currentPage,
+    setCurrentPage,
 
     searchParameter,
     searchParameterValue,

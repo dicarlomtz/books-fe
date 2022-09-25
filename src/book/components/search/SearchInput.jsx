@@ -10,7 +10,7 @@ export const SearchInput = ({ searchValue, setSearchValue }) => {
   return (
     <InputBase
         sx={{ ml: 1, flex: 1 }}
-        placeholder="Search Books"
+        placeholder='Search Books'
         value={searchValue}
         onChange={handleChange}
         startAdornment={<InputAdornment position='start'><SearchIcon /></InputAdornment>} />

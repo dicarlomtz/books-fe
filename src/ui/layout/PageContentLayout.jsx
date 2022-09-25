@@ -14,5 +14,5 @@ export const PageContentLayout = ({ children }) => {
 }
 
 PageContentLayout.propTypes = {
-  children: PropTypes.array.isRequired
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.element])
 }

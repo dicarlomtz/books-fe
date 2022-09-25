@@ -4,12 +4,12 @@ import PropTypes from 'prop-types'
 import { SearchOptions } from '../components'
 import { SearchInput } from '../components/search/SearchInput'
 
-const paperContainerStyles = { p: '2px 4px', display: 'flex', alignItems: 'center' }
+const paperContainerStyles = { p: '2px 4px', display: 'flex', alignItems: 'center', mt: 3 }
 
 export const SearchBar = ({ setSearchParameter, searchParameter, searchValue, setSearchValue }) => {
   return (
     <Paper
-      component="form"
+      component='form'
       sx={paperContainerStyles} >
         <SearchOptions setSearchParameter={setSearchParameter} searchParameter={searchParameter} />
       <SearchInput searchValue={searchValue} setSearchValue={ setSearchValue} />
