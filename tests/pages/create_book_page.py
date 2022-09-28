@@ -10,17 +10,20 @@ class CreateBookPage(BasePage):
     DESCRIPTION = By.ID, 'description'
     URL = By.ID, 'url'
     PUBLISHED_YEAR = By.ID, 'published_year'
-    AVAILABLE = By.ID, 'available'
+    AVAILABLE = By.XPATH, "//span[input[@id='available']]"
     COVER_IMAGE = By.ID, 'cover_image'
-    AUTHORS = By.ID, ':r7:'
+    AUTHORS = By.ID, 'authors'
     ADD_AUTHORS_BUTTON = By.XPATH, "(//button[contains(., 'Add')])[1]"
-    CO_AUTHORS = By.ID, ':r8:'
+    CO_AUTHORS = By.ID, 'co-authors'
     ADD_CO_AUTHORS_BUTTON = By.XPATH, "(//button[contains(., 'Add')])[2]"
     SAVE_BOOK_BUTTON = By.XPATH, "//button[@type='submit']"
 
     def __init__(self, driver):
         super().__init__(driver)
         self.driver.get(f'{TestData.BASE_URL}/books/create')
+
+    def is_checkbox_visible(self):
+        return self.is_visible(self.AVAILABLE)
 
     def do_create_book(self, title, description, url, published_year, available, cover_image, authors, co_authors):
         self.do_send_keys(self.TITLE, title)

@@ -5,19 +5,14 @@ from tests.test_base import BaseTest
 
 class TestBooksPage(BaseTest):
 
-    def test_books_page_title(self):
-        self.books_page = BooksPage(self.driver)
-        title = self.books_page.get_title(TestData.BOOKS_PAGE_TITLE)
-        assert title == TestData.BOOKS_PAGE_TITLE
-
-    def test_home_link_visible(self):
-        self.books_page = BooksPage(self.driver)
-        assert self.books_page.is_home_link_visible()
-
     def test_create_link_visible(self):
         self.books_page = BooksPage(self.driver)
-        assert self.books_page.is_create_link_visible()
+        assert self.books_page.is_create_link_redirecting_correctly() == f'{TestData.BASE_URL}/books/create'
 
-    def test_contact_link_visible(self):
+    def test_home_link_working(self):
         self.books_page = BooksPage(self.driver)
-        assert self.books_page.is_contact_link_visible()
+        assert self.books_page.is_home_link_redirecting_correctly() == f'{TestData.BASE_URL}/'
+
+    def test_books_visible(self):
+        self.books_page = BooksPage(self.driver)
+        assert self.books_page.are_books_visible()
