@@ -1,6 +1,7 @@
+import { Link as RouterLink } from 'react-router-dom'
+
 import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
-import { Link as RouterLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 export const MenuLink = ({ link }) => {

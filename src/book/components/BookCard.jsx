@@ -11,10 +11,11 @@ import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 import Tooltip from '@mui/material/Tooltip'
 import PropTypes from 'prop-types'
+import { Link as RouterLink } from 'react-router-dom'
 
 const cardStyles = { maxWidth: 345, height: 'auto', m: 2, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }
 
-export const BookCard = ({ title, authors, publishedYear, description, imageURL }) => {
+export const BookCard = ({ bookId, title, authors, publishedYear, description, imageURL }) => {
   return (
     <Card sx={cardStyles}>
       <CardHeader
@@ -49,7 +50,7 @@ export const BookCard = ({ title, authors, publishedYear, description, imageURL 
             </IconButton>
           </Tooltip>
         </Box>
-        <Button size='small'>Learn More</Button>
+        <Button component={RouterLink} to={`/books/${bookId}`} size='small'>Learn More</Button>
       </CardActions>
 
     </Card>
@@ -57,9 +58,10 @@ export const BookCard = ({ title, authors, publishedYear, description, imageURL 
 }
 
 BookCard.propTypes = {
+  bookId: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   authors: PropTypes.array.isRequired,
-  publishedYear: PropTypes.number.isRequired,
+  publishedYear: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  imageURL: PropTypes.string.isRequired
+  imageURL: PropTypes.string
 }

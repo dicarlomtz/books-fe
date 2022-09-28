@@ -1,5 +1,6 @@
 import Container from '@mui/material/Container'
 import PropTypes from 'prop-types'
+
 import { Navbar } from '../components'
 
 export const PageContentLayout = ({ children }) => {

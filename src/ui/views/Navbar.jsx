@@ -7,9 +7,7 @@ import MenuBookIcon from '@mui/icons-material/MenuBook'
 import {
   brandIconStyles, brandNameStyles
 } from '../styles'
-import { ToggleMenu } from '../components/navbar/toggle/ToggleMenu'
-import { UserMenu } from '../components/navbar/user/UserMenu'
-import { NavbarLinks } from '../components/navbar/NavbarLinks'
+import { ToggleMenu, UserMenu, NavbarLinks } from '../components'
 
 export const Navbar = () => {
   return (
