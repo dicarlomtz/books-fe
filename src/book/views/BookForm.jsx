@@ -160,6 +160,8 @@ export const BookForm = () => {
             <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
               <TextField label='Authors (Press Add)'
                 fullWidth
+                name='authors'
+                id='authors'
                 sx={{ mt: 2, mr: 1 }}
                 onChange={e => setAuthor(e.target.value)}
                 value={author}
@@ -177,6 +179,8 @@ export const BookForm = () => {
             <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
               <TextField label='Co-Authors (Press Add)'
                 fullWidth
+                name='co-authors'
+                id='co-authors'
                 sx={{ mt: 2, mr: 1 }}
                 onChange={e => setCoAuthor(e.target.value)}
                 value={coAuthor}

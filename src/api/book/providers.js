@@ -17,10 +17,13 @@ export const getAllBooks = async (pageNumber) => {
       errorMessage: null
     }
   } catch (error) {
+    const { response } = error
+    const errorMessage = response.data ? response.data.message : error.message
+
     return {
       books: [],
       maxPages: 0,
-      errorMessage: error.message
+      errorMessage
     }
   }
 }
@@ -42,10 +45,13 @@ export const getAllBooksBySearch = async (pageNumber, searchValue, searchParamet
       errorMessage: null
     }
   } catch (error) {
+    const { response } = error
+    const errorMessage = response.data ? response.data.message : error.message
+
     return {
       books: [],
       maxPages: 0,
-      errorMessage: error.message
+      errorMessage
     }
   }
 }

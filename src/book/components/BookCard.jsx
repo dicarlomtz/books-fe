@@ -23,11 +23,10 @@ export const BookCard = ({ bookId, title, authors, publishedYear, description, i
         sx={{ height: 150, textTransform: 'capitalize' }}
         subheader={authors[0] + ' - ' + publishedYear} />
 
-      <Box>
+      <Box sx={{ width: 320 }}>
         <CardMedia
           component='img'
           height='194'
-          width='320'
           image={imageURL}
           alt={title} />
         <CardContent>
