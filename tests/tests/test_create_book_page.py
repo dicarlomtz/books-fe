@@ -1,13 +1,12 @@
+from pytest import mark
+
 from config.config import TestData
 from pages.create_book_page import CreateBookPage
 from tests.test_base import BaseTest
 
 
+@mark.run(order=1)
 class TestCreateBooksPage(BaseTest):
-
-    def test_is_checkbox_visible(self):
-        self.create_book_page = CreateBookPage(self.driver)
-        assert self.create_book_page.is_checkbox_visible()
 
     def test_create_book(self):
         self.create_book_page = CreateBookPage(self.driver)
@@ -21,3 +20,7 @@ class TestCreateBooksPage(BaseTest):
             TestData.AUTHORS,
             TestData.CO_AUTHORS
         )
+
+    def test_home_link_redirecting_correctly(self):
+        self.create_book_page = CreateBookPage(self.driver)
+        assert self.create_book_page.is_home_link_redirecting_correctly() == f'{TestData.BASE_URL}/'
