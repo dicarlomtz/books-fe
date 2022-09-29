@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 
 import Grid from '@mui/material/Grid'
 import Alert from '@mui/material/Alert'
@@ -8,54 +9,9 @@ import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Chip from '@mui/material/Chip'
 import Box from '@mui/material/Box'
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
 
-import { saveBook } from '../../api'
-
-const validations = Yup.object({
-  title: Yup.string()
-    .max(100, 'Must be 100 characters or less')
-    .required('Title is required'),
-  description: Yup.string()
-    .required('Description is required'),
-  url: Yup.string().url('Invalid URL'),
-  published_year: Yup.number('Value must be numeric')
-    .min(1000, 'Invalid year format')
-    .max(new Date().getFullYear(), 'Year cannot be greater than the actual')
-    .required('Published year is required'),
-  available: Yup.boolean(),
-  authors: Yup.array()
-    .of(Yup.string())
-    .length(1, 'You must add 1 author at least'),
-  co_authors: Yup.array()
-    .of(Yup.string()),
-  cover_image: Yup.string().url('Invalid URL')
-})
-
-export const BookForm = () => {
-  const bookForm = useFormik({
-    initialValues: {
-      title: '',
-      description: '',
-      url: '',
-      published_year: '',
-      available: false,
-      authors: [],
-      co_authors: [],
-      cover_image: '',
-      errorMessage: null
-    },
-    validationSchema: validations,
-    onSubmit: (values) => {
-      saveBook(values).then(res => {
-        const { book, errorMessage, errors } = res
-        bookForm.setFieldValue('errorMessage', errorMessage)
-      })
-    }
-  })
-
-  const { touched, errors, values, handleChange } = bookForm
+export const BookForm = ({ bookForm }) => {
+  const { touched, errors, values, handleChange, handleReset } = bookForm
 
   const [author, setAuthor] = useState('')
   const [coAuthor, setCoAuthor] = useState('')
@@ -135,8 +91,8 @@ export const BookForm = () => {
               label="Available"
               labelPlacement='start'
               control={<Checkbox id='available'
-                name='available' checked={ values.available}
-                onChange={ handleChange} value={ values.available}
+                name='available' checked={ values.available }
+                onChange={ handleChange} value={ values.available }
                 color='primary' />} />
           </Grid>
 
@@ -195,10 +151,17 @@ export const BookForm = () => {
                 <Alert severity='error' >Unable to save the book due: { values.errorMessage }</Alert>
               </Grid>
               <Grid item xs={ 12 } sm={ 12 }>
-                <Button type="submit" variant="contained" fullWidth>SAVE BOOK</Button>
+                <Box sx={{ display: 'flex' }}>
+                  <Button onClick={handleReset} variant="contained" fullWidth sx={{ mr: 1 }}>RESET FORM</Button>
+                  <Button type="submit" variant="contained" fullWidth sx={{ ml: 1 }}>SAVE BOOK</Button>
+                </Box>
               </Grid>
             </Grid>
         </Grid>
     </form>
   )
+}
+
+BookForm.propTypes = {
+  bookForm: PropTypes.object.isRequired
 }

@@ -96,3 +96,44 @@ export const getBook = async (bookId) => {
     }
   }
 }
+
+export const deleteBook = async (bookId) => {
+  try {
+    const { data } = await instance.delete(`/${bookId}`)
+    const { book } = data
+
+    return {
+      book,
+      errorMessage: null
+    }
+  } catch (error) {
+    const { response } = error
+    const errorMessage = response.data ? response.data.message : error.message
+
+    return {
+      book: null,
+      errorMessage
+    }
+  }
+}
+
+export const updateBook = async (bookId, formBookData) => {
+  try {
+    const { data } = await instance.put(`/${bookId}`, formBookData)
+    const { book } = data
+
+    return {
+      book,
+      errorMessage: null,
+      errors: null
+    }
+  } catch (error) {
+    const { response } = error
+    const errorMessage = response.data ? response.data.message : error.message
+
+    return {
+      book: null,
+      errorMessage
+    }
+  }
+}

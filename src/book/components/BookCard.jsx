@@ -49,7 +49,7 @@ export const BookCard = ({ bookId, title, authors, publishedYear, description, i
             </IconButton>
           </Tooltip>
         </Box>
-        <Button component={RouterLink} to={`/books/${bookId}`} size='small'>Learn More</Button>
+        <Button component={RouterLink} to={`/books/view/${bookId}`} size='small'>Learn More</Button>
       </CardActions>
 
     </Card>

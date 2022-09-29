@@ -3,6 +3,10 @@ import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import Alert from '@mui/material/Alert'
 import Button from '@mui/material/Button'
+import EditIcon from '@mui/icons-material/Edit'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import { DeleteBookButton } from '../components'
+import { Link as RouterLink } from 'react-router-dom'
 
 const titleStyles = {
   fontWeight: 'regular',
@@ -13,9 +17,10 @@ const titleStyles = {
 
 const bookContainerStyles = {
   m: 2,
-  display: 'inline-flex',
+  display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'space-between'
+  justifyContent: 'space-between',
+  width: '100%'
 }
 
 const actionsStyles = {
@@ -33,7 +38,7 @@ export const BookContent = ({ book }) => {
         <Typography mb={2} variant='body1' sx={{ fontSize: 15, fontStyle: 'italic', color: 'grey.600' }}>{ book.description }</Typography>
         <Box sx={{ display: 'flex' }}>
           Authors:
-          <Typography sx={{ fontStyle: 'italic' }}>{ book.authors?.join(', ')} </Typography>
+          <Typography sx={{ fontStyle: 'italic' }}>{ book.authors.join(', ')} </Typography>
         </Box>
         <Box sx={{ display: 'flex' }}>
           Co-authors:
@@ -42,9 +47,9 @@ export const BookContent = ({ book }) => {
         <Alert sx={{ mt: 2 }} severity={book.available ? 'success' : 'warning'}>This book is {book.available ? 'available' : 'unavailable'}</Alert>
       </Box>
       <Box sx={actionsStyles}>
-        <Button>Edit</Button>
-        <Button>Delete</Button>
-        <Button>Get this book</Button>
+        <Button component={RouterLink} to={`/books/update/${book.id}`} variant='contained' color='success' endIcon={ <EditIcon /> }>Edit</Button>
+        <DeleteBookButton bookId={book.id}/>
+        <Button href={book.url} target='_blank' variant='contained' endIcon={ <ShoppingCartIcon />} >Get this book</Button>
       </Box>
     </Box>
   )
