@@ -2,13 +2,13 @@ import Box from '@mui/material/Box'
 import PropTypes from 'prop-types'
 
 import { BookCard } from '../components'
-import { NothingToShow } from '../../ui/components'
 
 const booksListWrapperStyles = {
   display: 'flex',
   flexWrap: 'wrap',
   p: 1,
-  maxWidth: '100%'
+  maxWidth: '100%',
+  justifyContent: 'center'
 }
 
 export const BookList = ({ books, errorMessage }) => {

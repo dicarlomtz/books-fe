@@ -4,9 +4,9 @@ import { BookForm } from '../views/BookForm'
 export const CreateBookPage = () => {
   return (
     <PageContentLayout>
-        <FormLayout title='Save Your Book'>
-              <BookForm />
-        </FormLayout>
+      <FormLayout title='Save Your Book'>
+        <BookForm />
+      </FormLayout>
     </PageContentLayout>
   )
 }
