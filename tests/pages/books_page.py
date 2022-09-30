@@ -2,7 +2,7 @@ import time
 
 from selenium.webdriver.common.by import By
 
-from config.config import TestData
+from config.config import TestData, store_book_id
 from pages.base_page import BasePage
 
 
@@ -15,6 +15,7 @@ class BooksPage(BasePage):
     BOOKS_TITLE = By.XPATH, "//span[contains(@class, 'MuiTypography-h5')]"
     BOOKS_AUTHOR_AND_YEAR = By.XPATH, "//span[contains(@class, 'MuiTypography-body1')]"
     PAGINATION_NAV = By.XPATH, '//div[form]/div[nav]'
+    LEARN_MORE_BUTTON = By.XPATH, "//a[contains(@class, 'MuiButton-sizeSmall')]"
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -37,27 +38,46 @@ class BooksPage(BasePage):
     def is_pagination_visible(self):
         return self.is_visible(self.PAGINATION_NAV)
 
-    def do_search_book(self, search):
+    def do_search_book_by_title(self, search):
         self.do_send_keys(self.SEARCH_BAR, search)
         time.sleep(0.5)
+
+        store_book_id(self.get_element_by_locator(self.LEARN_MORE_BUTTON).get_attribute('href'))
 
         books_filter_by_title = [
             element.text for element in self.get_all_elements_by_locator(self.BOOKS_TITLE)
         ]
 
+        for title in books_filter_by_title:
+            if search not in title:
+                return False
+
+        return True
+
+    def do_search_book_by_author(self, search):
+        self.do_send_keys(self.SEARCH_BAR, search)
+        time.sleep(0.5)
+
         books_filter_by_author_or_year = [
             element.text.split(' - ') for element in self.get_all_elements_by_locator(self.BOOKS_AUTHOR_AND_YEAR)
         ]
 
-        for title in books_filter_by_title:
-            if search in title:
-                return True
+        for author, _ in books_filter_by_author_or_year:
+            if search not in author:
+                return False
 
-        for author, year in books_filter_by_author_or_year:
-            if search in author:
-                return True
+        return True
 
-            if search in year:
-                return True
+    def do_search_book_by_published_year(self, search):
+        self.do_send_keys(self.SEARCH_BAR, str(search))
+        time.sleep(0.5)
 
-        return False
+        books_filter_by_author_or_year = [
+            element.text.split(' - ') for element in self.get_all_elements_by_locator(self.BOOKS_AUTHOR_AND_YEAR)
+        ]
+
+        for _, published_year in books_filter_by_author_or_year:
+            if search not in published_year:
+                return False
+
+        return True
