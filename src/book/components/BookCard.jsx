@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip'
 import PropTypes from 'prop-types'
 import { Link as RouterLink } from 'react-router-dom'
 
-const cardStyles = { maxWidth: 345, height: 'auto', m: 2, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }
+const cardStyles = { minWidth: 320, maxWidth: 320, height: 'auto', m: 2, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }
 
 export const BookCard = ({ bookId, title, authors, publishedYear, description, imageURL }) => {
   return (

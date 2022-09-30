@@ -22,6 +22,8 @@ export const useSearchBooks = (parameters = initialParameters) => {
   const [searchParameter, setSearchParameter] = useState(parameter)
   const [searchParameterValue, setSearchParameterValue] = useState(searchValue)
 
+  const [loading, setLoading] = useState(true)
+
   const [booksInfo, setBooksInfo] = useState({
     books: [],
     maxPages: 0,
@@ -29,11 +31,18 @@ export const useSearchBooks = (parameters = initialParameters) => {
   })
 
   useEffect(() => {
+    setLoading(true)
     if (searchParameter === searchParameters.all.key && !searchParameterValue.length) {
-      getAllBooks(currentPage).then(res => setBooksInfo(res))
+      getAllBooks(currentPage).then(res => {
+        setBooksInfo(res)
+        setLoading(false)
+      })
     } else {
       getAllBooksBySearch(currentPage, searchParameterValue, searchParameter)
-        .then(res => setBooksInfo(res))
+        .then(res => {
+          setBooksInfo(res)
+          setLoading(false)
+        })
     }
   }, [currentPage, searchParameter, searchParameterValue])
 
@@ -49,7 +58,9 @@ export const useSearchBooks = (parameters = initialParameters) => {
     searchParameterValue,
 
     setSearchParameter,
-    setSearchParameterValue
+    setSearchParameterValue,
+
+    loading
   }
 }
 

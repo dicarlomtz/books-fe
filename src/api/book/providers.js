@@ -69,10 +69,12 @@ export const saveBook = async (formBookData) => {
   } catch (error) {
     const { response } = error
     const errorMessage = response.data ? response.data.message : error.message
+    const errors = response.data ? response.data.errors : null
 
     return {
       book: null,
-      errorMessage
+      errorMessage,
+      errors
     }
   }
 }
@@ -130,10 +132,12 @@ export const updateBook = async (bookId, formBookData) => {
   } catch (error) {
     const { response } = error
     const errorMessage = response.data ? response.data.message : error.message
+    const errors = response.data ? response.data.errors : null
 
     return {
       book: null,
-      errorMessage
+      errorMessage,
+      errors
     }
   }
 }

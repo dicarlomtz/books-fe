@@ -31,9 +31,13 @@ export const UpdateBookPage = () => {
     onSubmit: (values) => {
       updateBook(book.id, values).then(res => {
         const { book, errorMessage, errors } = res
+
+        if (errors) bookForm.setStatus(errors)
         errorMessage
           ? bookForm.setFieldValue('errorMessage', errorMessage)
-          : createdBookAlert(book.title)
+          : updatedBookAlert(book.title)
+
+        bookForm.setSubmitting(false)
       })
     }
   })
@@ -45,7 +49,7 @@ export const UpdateBookPage = () => {
     })
   }, [])
 
-  const createdBookAlert = (title) => {
+  const updatedBookAlert = (title) => {
     Swal.fire({
       position: 'top-end',
       icon: 'success',

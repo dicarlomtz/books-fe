@@ -11,7 +11,7 @@ const booksListWrapperStyles = {
   justifyContent: 'center'
 }
 
-export const BookList = ({ books, errorMessage }) => {
+export const BookList = ({ books }) => {
   return (
     <Box sx={booksListWrapperStyles}>
       {books.map(book => (
@@ -28,6 +28,5 @@ export const BookList = ({ books, errorMessage }) => {
 }
 
 BookList.propTypes = {
-  books: PropTypes.array.isRequired,
-  errorMessage: PropTypes.string
+  books: PropTypes.array.isRequired
 }

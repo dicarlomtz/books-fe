@@ -37,9 +37,13 @@ export const CreateBookPage = () => {
     onSubmit: (values) => {
       saveBook(values).then(res => {
         const { book, errorMessage, errors } = res
+
+        if (errors) bookForm.setStatus(errors)
         errorMessage
           ? bookForm.setFieldValue('errorMessage', errorMessage)
           : createdBookAlert(book.title)
+
+        bookForm.setSubmitting(false)
       })
     }
   })

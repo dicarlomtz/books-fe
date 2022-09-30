@@ -11,7 +11,7 @@ import Chip from '@mui/material/Chip'
 import Box from '@mui/material/Box'
 
 export const BookForm = ({ bookForm }) => {
-  const { touched, errors, values, handleChange, handleReset } = bookForm
+  const { touched, errors, status, values, handleChange, handleReset, isSubmitting } = bookForm
 
   const [author, setAuthor] = useState('')
   const [coAuthor, setCoAuthor] = useState('')
@@ -28,6 +28,10 @@ export const BookForm = ({ bookForm }) => {
     bookForm.setFieldValue(type, newCreators)
   }
 
+  const onFocusHandler = ({ target }) => {
+    if (status && status[target.id]) bookForm.setStatus(target.id, null)
+  }
+
   return (
       <form onSubmit={ bookForm.handleSubmit }>
         <Grid container>
@@ -38,9 +42,10 @@ export const BookForm = ({ bookForm }) => {
               fullWidth
               name='title'
               id='title'
-              error={(touched.title && Boolean(errors.title))}
-              helperText={ (touched.title && errors.title)}
+              error={(touched.title && Boolean(errors.title)) || (status && Boolean(status.title))}
+              helperText={ (touched.title && errors.title) || (status && status.title?.join(', '))}
               onChange={ handleChange }
+              onFocus={ onFocusHandler }
               value={ values.title} />
           </Grid>
 
@@ -53,9 +58,10 @@ export const BookForm = ({ bookForm }) => {
               fullWidth
               name='description'
               id='description'
-              error={(touched.description && Boolean(errors.description)) }
-              helperText={(touched.description && errors.description) }
+              error={(touched.description && Boolean(errors.description)) || (status && Boolean(status.description))}
+              helperText={(touched.description && errors.description) || (status && status.description?.join(', '))}
               onChange={ handleChange }
+              onFocus={ onFocusHandler }
               value={ values.description} />
           </Grid>
 
@@ -66,9 +72,10 @@ export const BookForm = ({ bookForm }) => {
               fullWidth
               name='url'
               id='url'
-              error={ touched.url && errors.url}
-              helperText={ touched.url && errors.url}
+              error={(touched.url && errors.url) || (status && Boolean(status.url))}
+              helperText={(touched.url && errors.url) || (status && status.url?.join(', '))}
               onChange={ handleChange}
+              onFocus={ onFocusHandler }
               value={ values.url} />
           </Grid>
 
@@ -80,9 +87,10 @@ export const BookForm = ({ bookForm }) => {
               name='published_year'
               id='published_year'
               type='number'
-              error={ touched.published_year && Boolean(errors.published_year)}
-              helperText={ touched.published_year && errors.published_year}
+              error={(touched.published_year && Boolean(errors.published_year)) || (status && Boolean(status.published_year))}
+              helperText={(touched.published_year && errors.published_year) || (status && status.published_year?.join(', '))}
               onChange={ handleChange }
+              onFocus={ onFocusHandler }
               value={ values.published_year} />
           </Grid>
 
@@ -93,6 +101,7 @@ export const BookForm = ({ bookForm }) => {
               control={<Checkbox id='available'
                 name='available' checked={ values.available }
                 onChange={ handleChange} value={ values.available }
+                onFocus={ onFocusHandler }
                 color='primary' />} />
           </Grid>
 
@@ -102,9 +111,10 @@ export const BookForm = ({ bookForm }) => {
               fullWidth
               name='cover_image'
               id='cover_image'
-              error={ touched.cover_image && Boolean(errors.cover_image)}
-              helperText={ touched.cover_image && errors.cover_image}
+              error={(touched.cover_image && Boolean(errors.cover_image)) || (status && Boolean(status.cover_image))}
+              helperText={(touched.cover_image && errors.cover_image) || (status && status.cover_image?.join(', '))}
               onChange={ handleChange}
+              onFocus={ onFocusHandler }
               value={ values.cover_image} />
           </Grid>
 
@@ -120,9 +130,10 @@ export const BookForm = ({ bookForm }) => {
                 id='authors'
                 sx={{ mt: 2, mr: 1 }}
                 onChange={e => setAuthor(e.target.value)}
+                onFocus={ onFocusHandler }
                 value={author}
-                error={ touched.authors && Boolean(errors.authors)}
-                helperText={ touched.authors && errors.authors} />
+                error={(touched.authors && Boolean(errors.authors)) || (status && Boolean(status.authors))}
+                helperText={(touched.authors && errors.authors) || (status && status.authors?.join(', '))} />
               <Button variant='contained' onClick={() => addCreators(values.authors, 'authors', author, setAuthor)}>Add</Button>
             </Box>
           </Grid>
@@ -139,9 +150,10 @@ export const BookForm = ({ bookForm }) => {
                 id='co-authors'
                 sx={{ mt: 2, mr: 1 }}
                 onChange={e => setCoAuthor(e.target.value)}
+                onFocus={ onFocusHandler }
                 value={coAuthor}
-                error={ touched.co_authors && Boolean(errors.co_authors)}
-                helperText={ touched.co_authors && errors.co_authors} />
+                error={(touched.co_authors && Boolean(errors.co_authors)) || (status && Boolean(status.co_authors))}
+                helperText={(touched.co_authors && errors.co_authors) || (status && status.co_authors?.join(', '))} />
                 <Button variant='contained' onClick={() => addCreators(values.co_authors, 'co_authors', coAuthor, setCoAuthor)}>Add</Button>
             </Box>
           </Grid>
@@ -152,8 +164,8 @@ export const BookForm = ({ bookForm }) => {
               </Grid>
               <Grid item xs={ 12 } sm={ 12 }>
                 <Box sx={{ display: 'flex' }}>
-                  <Button onClick={handleReset} variant="contained" fullWidth sx={{ mr: 1 }}>RESET FORM</Button>
-                  <Button type="submit" variant="contained" fullWidth sx={{ ml: 1 }}>SAVE BOOK</Button>
+                  <Button disabled={isSubmitting} onClick={handleReset} variant="contained" fullWidth sx={{ mr: 1 }}>RESET FORM</Button>
+                  <Button disabled={isSubmitting} type="submit" variant="contained" fullWidth sx={{ ml: 1 }}>SAVE BOOK</Button>
                 </Box>
               </Grid>
             </Grid>
