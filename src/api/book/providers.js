@@ -1,15 +1,9 @@
-import axios from 'axios'
 import { getAvailableParameter } from '../../hooks'
-
-const BASE_URL = 'http://localhost/books'
-const instance = axios.create({
-  baseURL: BASE_URL,
-  timeout: 5000
-})
+import { instance } from '../instance'
 
 export const getAllBooks = async (pageNumber) => {
   try {
-    const { data } = await instance.get(`?page=${pageNumber}`)
+    const { data } = await instance.get(`books?page=${pageNumber}`)
     const { data: books, last_page: maxPages } = data
     return {
       books,
@@ -34,7 +28,7 @@ export const getAllBooksBySearch = async (pageNumber, searchValue, searchParamet
     const availableValue = getAvailableParameter(searchParameter)
     const availableValueQuery = availableValue !== null ? `&available=${availableValue}` : ''
 
-    const fullQuery = `/search/parameter?page=${pageNumber}${searchValueQuery}${availableValueQuery}`
+    const fullQuery = `books/search/parameter?page=${pageNumber}${searchValueQuery}${availableValueQuery}`
 
     const { data } = await instance.get(fullQuery)
     const { data: books, last_page: maxPages } = data
@@ -58,7 +52,7 @@ export const getAllBooksBySearch = async (pageNumber, searchValue, searchParamet
 
 export const saveBook = async (formBookData) => {
   try {
-    const { data } = await instance.post('', formBookData)
+    const { data } = await instance.post('books', formBookData)
     const { book } = data
 
     return {
@@ -81,7 +75,7 @@ export const saveBook = async (formBookData) => {
 
 export const getBook = async (bookId) => {
   try {
-    const { data } = await instance.get(`/${bookId}`)
+    const { data } = await instance.get(`books/${bookId}`)
     const { book } = data
 
     return {
@@ -101,7 +95,7 @@ export const getBook = async (bookId) => {
 
 export const deleteBook = async (bookId) => {
   try {
-    const { data } = await instance.delete(`/${bookId}`)
+    const { data } = await instance.delete(`books/${bookId}`)
     const { book } = data
 
     return {
@@ -121,7 +115,7 @@ export const deleteBook = async (bookId) => {
 
 export const updateBook = async (bookId, formBookData) => {
   try {
-    const { data } = await instance.put(`/${bookId}`, formBookData)
+    const { data } = await instance.put(`books/${bookId}`, formBookData)
     const { book } = data
 
     return {

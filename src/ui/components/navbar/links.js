@@ -1,5 +1,5 @@
 export const user = [
-  {
+/*   {
     description: 'Profile',
     to: '/'
   },
@@ -10,7 +10,7 @@ export const user = [
   {
     description: 'Dashboard',
     to: '/'
-  },
+  }, */
   {
     description: 'Logout',
     to: '/'
@@ -25,9 +25,9 @@ export const navigation = [
   {
     description: 'Create',
     to: '/books/create'
-  },
-  {
+  }
+/*   {
     description: 'Contact',
     to: '/'
-  }
+  } */
 ]
