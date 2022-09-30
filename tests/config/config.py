@@ -15,3 +15,9 @@ class TestData:
     COVER_IMAGE = None
     AUTHORS = ['J. K. Rowling']
     CO_AUTHORS = []
+
+    """Single Book Page"""
+    BOOK_ID = 1
+
+    """Update Book Page"""
+    UPDATE_COVER_IMAGE = 'https://images-na.ssl-images-amazon.com/images/I/51MnBaafASL._SX423_BO1,204,203,200_.jpg'

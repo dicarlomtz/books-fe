@@ -10,7 +10,7 @@ class TestCreateBooksPage(BaseTest):
 
     def test_create_book(self):
         self.create_book_page = CreateBookPage(self.driver)
-        self.create_book_page.do_create_book(
+        assert self.create_book_page.do_create_book(
             TestData.TITLE,
             TestData.DESCRIPTION,
             TestData.URL,
@@ -19,7 +19,7 @@ class TestCreateBooksPage(BaseTest):
             TestData.COVER_IMAGE,
             TestData.AUTHORS,
             TestData.CO_AUTHORS
-        )
+        ) == f'{TestData.BASE_URL}/'
 
     def test_home_link_redirecting_correctly(self):
         self.create_book_page = CreateBookPage(self.driver)
