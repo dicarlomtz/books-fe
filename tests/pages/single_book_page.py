@@ -2,7 +2,7 @@ import time
 
 from selenium.webdriver.common.by import By
 
-from config.config import TestData
+from config.config import TestData, get_book_id
 from pages.base_page import BasePage
 
 
@@ -14,7 +14,7 @@ class SingleBookPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self.driver.get(f'{TestData.BASE_URL}/books/view/{TestData.BOOK_ID}')
+        self.driver.get(f'{TestData.BASE_URL}/books/view/{get_book_id()}')
 
     def is_edit_button_redirecting_correctly(self):
         self.do_click(self.EDIT_BUTTON)
