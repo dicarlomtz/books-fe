@@ -46,7 +46,9 @@ class CreateBookPage(BasePage):
             self.do_click(self.ADD_CO_AUTHORS_BUTTON)
 
         self.do_click(self.SAVE_BOOK_BUTTON)
+
         time.sleep(0.5)
+        return self.get_current_url()
 
     def is_home_link_redirecting_correctly(self):
         self.do_click(self.HOME_LINK)
