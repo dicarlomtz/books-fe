@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material"
+import { Grid, Typography } from '@mui/material'
 
 export const AuthLayout = ({ title, children }) => {
   return (
@@ -10,9 +10,9 @@ export const AuthLayout = ({ title, children }) => {
         alignItems="center"
         justifyContent="center"
         sx={{
-            minHeight: '100vh',
-            backgroundColor: 'primary.main',
-            padding: 4
+          minHeight: '100vh',
+          backgroundColor: 'primary.main',
+          padding: 4
         }}
     >
 
@@ -21,7 +21,7 @@ export const AuthLayout = ({ title, children }) => {
             className="box-shadow"
             xs={3}
               sx={{
-                width:{ md:450 },
+                width: { md: 450 },
                 backgroundColor: 'white',
                 padding: 3,
                 borderRadius: 2

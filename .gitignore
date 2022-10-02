@@ -25,3 +25,9 @@ dist-ssr
 
 .yarn/
 .yarnrc.yml
+
+tests/**/__pycache__/
+tests/.pytest_cache/
+tests/.idea/
+tests/venv/
+tests/.venv/

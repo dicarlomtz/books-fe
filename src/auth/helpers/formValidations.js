@@ -9,8 +9,10 @@ export const loginValidations = Yup.object({
 })
 
 export const registerValidations = Yup.object({
+  name: Yup.string()
+    .required('Name is required'),
   username: Yup.string()
-    .required('User name is required'),
+    .required('User username is required'),
   email: Yup.string()
     .email('Invalid email format')
     .required('Email is required'),

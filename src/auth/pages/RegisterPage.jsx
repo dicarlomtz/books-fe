@@ -11,12 +11,13 @@ import { startCreatingUserWithEmailPassword } from '../../store/auth/thunks'
 
 export const RegisterPage = () => {
   const { status, errorMessage } = useSelector(state => state.auth)
-  const isAuthenticating = useMemo(() => status === authenticationStatuses.checking, [status])
+  const isAuthenticating = useMemo(() => status === authenticationStatuses.authenticating, [status])
 
   const dispatch = useDispatch()
 
   const registerForm = useFormik({
     initialValues: {
+      name: '',
       username: '',
       email: '',
       password: ''
@@ -33,11 +34,26 @@ export const RegisterPage = () => {
       <AuthLayout title='Register'>
             <form onSubmit={ registerForm.handleSubmit } >
               <Grid container>
+
                     <Grid item xs={ 12 } sx={{ mt: 2 }}>
                         <TextField
-                            label="Name"
+                            label="Full name"
                             type="text"
                             placeholder="Your full name"
+                            id='name'
+                            name="name"
+                            value={values.name}
+                            onChange={handleChange}
+                            error={touched.name && Boolean(errors.name)}
+                            helperText={touched.name && errors.name}
+                            fullWidth />
+                    </Grid>
+
+                    <Grid item xs={ 12 } sx={{ mt: 2 }}>
+                        <TextField
+                            label="Username"
+                            type="text"
+                            placeholder="Your username"
                             id='username'
                             name="username"
                             value={values.username}
