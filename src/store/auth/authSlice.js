@@ -8,27 +8,27 @@ export const authenticationStatuses = {
 
 const startingState = {
   status: authenticationStatuses.notAuthenticated,
+  name: null,
   username: null,
   email: null,
-  name: null,
   token: null,
   errorMessage: null
 }
 
 const loginReducer = (state, { payload }) => {
   state.status = authenticationStatuses.authenticated
-  state.username = payload.username
-  state.email = payload.email
-  state.name = payload.name
+  state.name = payload.user.name
+  state.username = payload.user.username
+  state.email = payload.user.email
   state.token = payload.token
   state.errorMessage = null
 }
 
 const logoutReducer = (state, { payload }) => {
   state.status = authenticationStatuses.notAuthenticated
+  state.name = null
   state.username = null
   state.email = null
-  state.name = null
   state.token = null
   state.errorMessage = payload?.errorMessage
 }
