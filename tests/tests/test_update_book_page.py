@@ -10,4 +10,7 @@ class TestUpdateBookPage(BaseTest):
 
     def test_update_book(self):
         self.update_book_page = UpdateBookPage(self.driver)
-        assert self.update_book_page.do_update_book(TestData.UPDATE_COVER_IMAGE) == f'{TestData.BASE_URL}/'
+        assert self.update_book_page.do_update_book(
+            TestData.UPDATE_COVER_IMAGE,
+            TestData.MODIFY_AVAILABLE
+        ) == f'{TestData.BASE_URL}/'

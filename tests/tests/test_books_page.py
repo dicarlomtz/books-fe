@@ -28,6 +28,16 @@ class TestBooksPage(BaseTest):
         self.books_page = BooksPage(self.driver)
         assert self.books_page.is_pagination_visible()
 
-    def test_do_search_book(self):
+    def test_do_search_book_by_title(self):
         self.books_page = BooksPage(self.driver)
-        assert self.books_page.do_search_book(TestData.BOOK_SEARCH)
+        assert self.books_page.do_search_book_by_title(TestData.BOOK_SEARCH_TITLE)
+
+    @mark.skip
+    def test_do_search_book_by_author(self):
+        self.books_page = BooksPage(self.driver)
+        assert self.books_page.do_search_book_by_author(TestData.BOOK_SEARCH_AUTHOR)
+
+    @mark.skip
+    def test_do_search_book_by_published_year(self):
+        self.books_page = BooksPage(self.driver)
+        assert self.books_page.do_search_book_by_published_year(TestData.BOOK_SEARCH_PUBLISHED_YEAR)
