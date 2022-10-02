@@ -1,11 +1,19 @@
-import { Link as RouterLink } from 'react-router-dom'
-import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material'
-import { AuthLayout } from '../layout/AuthLayout'
-import { useDispatch, useSelector } from 'react-redux'
-import { startEmailPasswordLogin } from '../../store/auth/thunks'
 import { useMemo } from 'react'
-import { authenticationStatuses } from '../../store/auth/authSlice'
+
+import { Link as RouterLink } from 'react-router-dom'
+import Alert from '@mui/material/Alert'
+import Button from '@mui/material/Button'
+import Grid from '@mui/material/Grid'
+import Link from '@mui/material/Link'
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
+
+import { useDispatch, useSelector } from 'react-redux'
 import { useFormik } from 'formik'
+
+import { AuthLayout } from '../layout/AuthLayout'
+import { startEmailPasswordLogin } from '../../store/auth/thunks'
+import { authenticationStatuses } from '../../store/auth/authSlice'
 import { loginValidations } from '../helpers/formValidations'
 
 export const LoginPage = () => {
@@ -33,8 +41,7 @@ export const LoginPage = () => {
                 <Grid container>
                     <Grid item xs={ 12 } sx={{ mt: 2 }}>
                         <TextField
-                            label="email"
-                            type="email"
+                            label="Email"
                             placeholder="example@domain.com"
                             fullWidth
                             id='email'

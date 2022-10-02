@@ -20,7 +20,7 @@ export const BooksPage = () => {
     <PageContentLayout>
       <Typography variant='h1' align='center' sx={{ fontWeight: 'regular', fontSize: 'h3.fontSize', textTransform: 'capitalize' }}>The best book search engine, Boogle It!</Typography>
       <SearchBar setSearchParameter={setSearchParameter} searchParameter={searchParameter} searchValue={searchParameterValue} setSearchValue={setSearchParameterValue} />
-      {Boolean(books.length) && <BookList books={books} />}
+      {Boolean(books.length) && !loading && <BookList books={books} />}
       {!errorMessage && !books.length && !loading && <NothingToShow reason='No data to show' />}
       {errorMessage && !loading && <NothingToShow reason={ errorMessage } />}
       {loading && <Waiting />}

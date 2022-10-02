@@ -1,12 +1,18 @@
-import { Link as RouterLink } from 'react-router-dom'
-import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material'
-import { AuthLayout } from '../layout/AuthLayout'
-
-import { useDispatch, useSelector } from 'react-redux'
 import { useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { Link as RouterLink } from 'react-router-dom'
+import Alert from '@mui/material/Alert'
+import Button from '@mui/material/Button'
+import Grid from '@mui/material/Grid'
+import Link from '@mui/material/Link'
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
+import { useFormik } from 'formik'
+
+import { AuthLayout } from '../layout/AuthLayout'
 import { authenticationStatuses } from '../../store/auth/authSlice'
 import { registerValidations } from '../helpers/formValidations'
-import { useFormik } from 'formik'
 import { startCreatingUserWithEmailPassword } from '../../store/auth/thunks'
 
 export const RegisterPage = () => {
