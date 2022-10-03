@@ -4,6 +4,12 @@ import json
 class TestData:
     BASE_URL = 'http://127.0.0.1:5173'
 
+    """Register Page"""
+    NAME = 'Test Test'
+    USERNAME = 'tests'
+    EMAIL = 'test@test.com'
+    PASSWORD = 'Tests_123'
+
     """Books Page"""
     BOOK_SEARCH_TITLE = 'Harry Potter'
     BOOK_SEARCH_AUTHOR = 'Rowling'

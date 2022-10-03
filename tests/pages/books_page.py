@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 
 from config.config import TestData, store_book_id
 from pages.base_page import BasePage
+from pages.login_page import LoginPage
 
 
 class BooksPage(BasePage):
@@ -19,6 +20,9 @@ class BooksPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
+        self.login_page = LoginPage(driver)
+        self.login_page.do_login(TestData.EMAIL, TestData.PASSWORD)
+        time.sleep(0.5)
         self.driver.get(TestData.BASE_URL)
 
     def is_create_link_redirecting_correctly(self):

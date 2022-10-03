@@ -5,7 +5,7 @@ from pages.create_book_page import CreateBookPage
 from tests.test_base import BaseTest
 
 
-@mark.run(order=1)
+@mark.run(order=2)
 class TestCreateBooksPage(BaseTest):
 
     def test_create_book(self):

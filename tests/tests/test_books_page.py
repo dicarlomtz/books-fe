@@ -5,7 +5,7 @@ from pages.books_page import BooksPage
 from tests.test_base import BaseTest
 
 
-@mark.run(order=2)
+@mark.run(order=3)
 class TestBooksPage(BaseTest):
 
     def test_create_link_redirecting_correctly(self):
