@@ -18,7 +18,7 @@ import { loginValidations } from '../helpers/formValidations'
 
 export const LoginPage = () => {
   const { status, errorMessage } = useSelector(state => state.auth)
-  const isAuthenticating = useMemo(() => status === authenticationStatuses.checking, [status])
+  const isAuthenticating = useMemo(() => status === authenticationStatuses.authenticating, [status])
 
   const dispatch = useDispatch()
 

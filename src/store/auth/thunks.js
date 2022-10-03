@@ -30,8 +30,6 @@ export const startLogout = () => {
 
 export const initialAuthentication = () => {
   return async (dispatch) => {
-    dispatch(authenticating())
-
     const { authData } = await initialAthentication()
 
     if (authData) {
