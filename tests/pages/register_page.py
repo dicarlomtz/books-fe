@@ -27,4 +27,4 @@ class RegisterPage(BasePage):
         self.do_click(self.REGISTER_BUTTON)
 
         time.sleep(0.5)
-        return True
+        return self.get_current_url()
