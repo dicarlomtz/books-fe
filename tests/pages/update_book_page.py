@@ -4,20 +4,27 @@ from selenium.webdriver.common.by import By
 
 from config.config import TestData, get_book_id
 from pages.base_page import BasePage
-from pages.login_page import LoginPage
 
 
 class UpdateBookPage(BasePage):
     """By locators"""
+    EMAIL = By.ID, 'email'
+    PASSWORD = By.ID, 'password'
+    LOGIN_BUTTON = By.XPATH, "//button[@type='submit']"
     COVER_IMAGE = By.ID, 'cover_image'
     AVAILABLE = By.XPATH, "//span[input[@id='available']]"
     SAVE_BOOK_BUTTON = By.XPATH, "//button[@type='submit']"
 
     def __init__(self, driver):
         super().__init__(driver)
-        self.login_page = LoginPage(driver)
-        self.login_page.do_login(TestData.EMAIL, TestData.PASSWORD)
-        time.sleep(0.5)
+        self.driver.get(f'{TestData.BASE_URL}/auth/login')
+        self.do_login(
+            self.EMAIL,
+            self.PASSWORD,
+            self.LOGIN_BUTTON,
+            TestData.EMAIL,
+            TestData.PASSWORD
+        )
         self.driver.get(f'{TestData.BASE_URL}/books/update/{get_book_id()}')
 
     def do_update_book(self, cover_image, modify_available=False):

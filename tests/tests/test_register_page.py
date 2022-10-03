@@ -15,4 +15,4 @@ class TestRegisterPage(BaseTest):
             TestData.USERNAME,
             TestData.EMAIL,
             TestData.PASSWORD
-        )
+        ) == f'{TestData.BASE_URL}/'
