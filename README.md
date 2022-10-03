@@ -6,3 +6,7 @@ To run this project, you will need to have installed [NPM](https://docs.npmjs.co
 
 1. First you need to install project dependencies: `yarn`
 2. Then you can run the project: `yarn dev`
+
+# Backend implementation
+
+This project can be used along [this](https://github.com/dicarlomtz/books-api) server-side implementation
