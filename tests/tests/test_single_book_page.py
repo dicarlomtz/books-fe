@@ -5,7 +5,7 @@ from pages.single_book_page import SingleBookPage
 from tests.test_base import BaseTest
 
 
-@mark.run(order=4)
+@mark.run(order=5)
 class TestSingleBookPage(BaseTest):
 
     def test_edit_button_redirecting_correctly(self):

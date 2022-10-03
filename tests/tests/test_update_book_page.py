@@ -5,7 +5,7 @@ from pages.update_book_page import UpdateBookPage
 from tests.test_base import BaseTest
 
 
-@mark.run(order=3)
+@mark.run(order=4)
 class TestUpdateBookPage(BaseTest):
 
     def test_update_book(self):
