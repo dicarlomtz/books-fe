@@ -1,12 +1,18 @@
 import { instance } from '../instance'
 
+const storeAuthData = (token, authData) => {
+  instance.defaults.headers.common.Authorization = `Bearer ${token}`
+  localStorage.authData = JSON.stringify(authData)
+}
+
 export const loginUserWithEmailPassword = async (formData) => {
   try {
     const result = await instance.post('auth/login', formData)
     const { data, status } = result
     const { auth_token: token, user } = data
+    const { email, password } = formData
 
-    instance.defaults.headers.common.Authorization = `Bearer ${token}`
+    storeAuthData(token, { email, password })
 
     return {
       ok: status === 200,
@@ -32,8 +38,9 @@ export const registerUserWithEmailPassword = async (formData) => {
     const result = await instance.post('auth/register', formData)
     const { data, status } = result
     const { auth_token: token, user } = data
+    const { email, password } = formData
 
-    instance.defaults.headers.common.Authorization = `Bearer ${token}`
+    storeAuthData(token, { email, password })
 
     return {
       ok: status === 200,
@@ -57,9 +64,15 @@ export const registerUserWithEmailPassword = async (formData) => {
 export const initialAthentication = async () => {
   try {
     await instance.get('sanctum/csrf-cookie')
+    const authData = JSON.parse(localStorage.authData)
+    return {
+      authData,
+      errorMessage: null
+    }
   } catch (error) {
     return {
-      errorMessage: error.message
+      errorMessage: error.message,
+      authData: null
     }
   }
 }

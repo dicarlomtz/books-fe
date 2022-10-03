@@ -1,12 +1,15 @@
 import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
-import { initialAthentication } from './api/auth/providers'
 import { AppRouter } from './router/AppRouter'
+import { initialAuthentication } from './store/auth/thunks'
 import { AppTheme } from './theme/AppTheme'
 
 export const BooksApp = () => {
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    initialAthentication()
+    dispatch(initialAuthentication())
   }, [])
 
   return (
