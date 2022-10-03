@@ -1,5 +1,3 @@
-import time
-
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 
@@ -30,10 +28,3 @@ class BasePage:
 
     def get_current_url(self):
         return self.driver.current_url
-
-    def do_login(self, by_locator_email, by_locator_password, by_locator_button, email, password):
-        self.do_send_keys(by_locator_email, email)
-        self.do_send_keys(by_locator_password, password)
-
-        self.do_click(by_locator_button)
-        time.sleep(0.5)

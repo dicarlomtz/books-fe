@@ -17,15 +17,14 @@ class SingleBookPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self.driver.get(f'{TestData.BASE_URL}/auth/login')
-        self.do_login(
-            self.EMAIL,
-            self.PASSWORD,
-            self.LOGIN_BUTTON,
-            TestData.EMAIL,
-            TestData.PASSWORD
-        )
         self.driver.get(f'{TestData.BASE_URL}/books/view/{get_book_id()}')
+
+    def do_login(self, email, password):
+        self.do_send_keys(self.EMAIL, email)
+        self.do_send_keys(self.PASSWORD, password)
+
+        self.do_click(self.LOGIN_BUTTON)
+        time.sleep(0.5)
 
     def is_edit_button_redirecting_correctly(self):
         self.do_click(self.EDIT_BUTTON)

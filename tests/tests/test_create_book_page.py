@@ -8,6 +8,10 @@ from tests.test_base import BaseTest
 @mark.run(order=2)
 class TestCreateBooksPage(BaseTest):
 
+    def test_do_login(self):
+        self.create_book_page = CreateBookPage(self.driver)
+        self.create_book_page.do_login(TestData.EMAIL, TestData.PASSWORD)
+
     def test_create_book(self):
         self.create_book_page = CreateBookPage(self.driver)
         assert self.create_book_page.do_create_book(
@@ -20,7 +24,3 @@ class TestCreateBooksPage(BaseTest):
             TestData.AUTHORS,
             TestData.CO_AUTHORS
         ) == f'{TestData.BASE_URL}/'
-
-    def test_home_link_redirecting_correctly(self):
-        self.create_book_page = CreateBookPage(self.driver)
-        assert self.create_book_page.is_home_link_redirecting_correctly() == f'{TestData.BASE_URL}/'

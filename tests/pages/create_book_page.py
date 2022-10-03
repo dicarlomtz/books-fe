@@ -11,7 +11,6 @@ class CreateBookPage(BasePage):
     EMAIL = By.ID, 'email'
     PASSWORD = By.ID, 'password'
     LOGIN_BUTTON = By.XPATH, "//button[@type='submit']"
-    HOME_LINK = By.LINK_TEXT, 'Boogle'
     TITLE = By.ID, 'title'
     DESCRIPTION = By.ID, 'description'
     URL = By.ID, 'url'
@@ -26,15 +25,14 @@ class CreateBookPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self.driver.get(f'{TestData.BASE_URL}/auth/login')
-        self.do_login(
-            self.EMAIL,
-            self.PASSWORD,
-            self.LOGIN_BUTTON,
-            TestData.EMAIL,
-            TestData.PASSWORD
-        )
         self.driver.get(f'{TestData.BASE_URL}/books/create')
+
+    def do_login(self, email, password):
+        self.do_send_keys(self.EMAIL, email)
+        self.do_send_keys(self.PASSWORD, password)
+
+        self.do_click(self.LOGIN_BUTTON)
+        time.sleep(0.5)
 
     def do_create_book(self, title, description, url, published_year, available, cover_image, authors, co_authors):
         self.do_send_keys(self.TITLE, title)
@@ -59,8 +57,4 @@ class CreateBookPage(BasePage):
         self.do_click(self.SAVE_BOOK_BUTTON)
 
         time.sleep(0.5)
-        return self.get_current_url()
-
-    def is_home_link_redirecting_correctly(self):
-        self.do_click(self.HOME_LINK)
         return self.get_current_url()

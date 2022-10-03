@@ -8,13 +8,13 @@ from tests.test_base import BaseTest
 @mark.run(order=3)
 class TestBooksPage(BaseTest):
 
+    def test_do_login(self):
+        self.books_page = BooksPage(self.driver)
+        self.books_page.do_login(TestData.EMAIL, TestData.PASSWORD)
+
     def test_create_link_redirecting_correctly(self):
         self.books_page = BooksPage(self.driver)
         assert self.books_page.is_create_link_redirecting_correctly() == f'{TestData.BASE_URL}/books/create'
-
-    def test_home_link_redirecting_correctly(self):
-        self.books_page = BooksPage(self.driver)
-        assert self.books_page.is_home_link_redirecting_correctly() == f'{TestData.BASE_URL}/'
 
     def test_search_bar_visibility(self):
         self.books_page = BooksPage(self.driver)
