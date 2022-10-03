@@ -10,3 +10,4 @@ To run this project, you will need to have installed [NPM](https://docs.npmjs.co
 # Backend implementation
 
 This project can be used along [this](https://github.com/dicarlomtz/books-api) server-side implementation
+(Be aware that you will need extra steps, read the backend .README)
