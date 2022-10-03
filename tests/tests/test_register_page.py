@@ -10,9 +10,9 @@ class TestRegisterPage(BaseTest):
 
     def test_register(self):
         self.register_page = RegisterPage(self.driver)
-        assert self.register_page.do_register(
+        self.register_page.do_register(
             TestData.NAME,
             TestData.USERNAME,
             TestData.EMAIL,
             TestData.PASSWORD
-        ) == f'{TestData.BASE_URL}/'
+        )

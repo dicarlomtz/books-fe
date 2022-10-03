@@ -11,7 +11,6 @@ class BooksPage(BasePage):
     EMAIL = By.ID, 'email'
     PASSWORD = By.ID, 'password'
     LOGIN_BUTTON = By.XPATH, "//button[@type='submit']"
-    HOME_LINK = By.LINK_TEXT, 'Boogle'
     CREATE_LINK = By.XPATH, "//a//p[contains(., 'Create')]"
     SEARCH_BAR = By.XPATH, "//input[@type='text']"
     BOOKS_GRID = By.XPATH, '//div[form]/div[div]'
@@ -22,22 +21,17 @@ class BooksPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self.driver.get(f'{TestData.BASE_URL}/auth/login')
-        self.do_login(
-            self.EMAIL,
-            self.PASSWORD,
-            self.LOGIN_BUTTON,
-            TestData.EMAIL,
-            TestData.PASSWORD
-        )
         self.driver.get(TestData.BASE_URL)
+
+    def do_login(self, email, password):
+        self.do_send_keys(self.EMAIL, email)
+        self.do_send_keys(self.PASSWORD, password)
+
+        self.do_click(self.LOGIN_BUTTON)
+        time.sleep(0.5)
 
     def is_create_link_redirecting_correctly(self):
         self.do_click(self.CREATE_LINK)
-        return self.get_current_url()
-
-    def is_home_link_redirecting_correctly(self):
-        self.do_click(self.HOME_LINK)
         return self.get_current_url()
 
     def is_search_visible(self):
