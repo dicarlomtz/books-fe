@@ -19,8 +19,6 @@ export const Navbar = () => {
           <Typography
             variant='h6'
             noWrap
-            component='a'
-            href='/'
             sx={ brandNameStyles } >
             Boogle
           </Typography>

@@ -1,4 +1,4 @@
-import { loginUserWithEmailPassword, registerUserWithEmailPassword } from '../../api/auth/providers'
+import { loginUserWithEmailPassword, logoutUser, registerUserWithEmailPassword } from '../../api/auth/providers'
 import { authenticating, login, logout } from './authSlice'
 
 export const startEmailPasswordLogin = (data) => {
@@ -7,9 +7,7 @@ export const startEmailPasswordLogin = (data) => {
 
     const result = await loginUserWithEmailPassword(data)
 
-    if (!result.ok) return dispatch(logout(result))
-
-    dispatch(login(result))
+    if (result.ok) dispatch(login(result))
   }
 }
 
@@ -19,14 +17,13 @@ export const startCreatingUserWithEmailPassword = (data) => {
 
     const result = await registerUserWithEmailPassword(data)
 
-    if (!result.ok) return dispatch(logout(result))
-
-    dispatch(login(result))
+    if (result.ok) dispatch(login(result))
   }
 }
 
 export const startLogout = () => {
   return async (dispatch) => {
-    dispatch(logout())
+    const result = await logoutUser()
+    if (result.ok) dispatch(logout())
   }
 }

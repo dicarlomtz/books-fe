@@ -63,3 +63,26 @@ export const initialAthentication = async () => {
     }
   }
 }
+
+export const logoutUser = async () => {
+  try {
+    const result = await instance.get('auth/logout')
+    const { data, status } = result
+
+    return {
+      ok: status === 200,
+      message: data.message,
+      errorMessage: null
+    }
+  } catch (error) {
+    const { response } = error
+    const { status } = response
+    const errorMessage = response.data ? response.data.message : error.message
+
+    return {
+      ok: status === 200,
+      message: null,
+      errorMessage
+    }
+  }
+}

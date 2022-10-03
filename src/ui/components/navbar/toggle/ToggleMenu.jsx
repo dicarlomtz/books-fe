@@ -51,8 +51,6 @@ export const ToggleMenu = () => {
         <Typography
             variant='h5'
             noWrap
-            component='a'
-            href=''
             sx={ brandNameStylesSm } >
             Boogle
         </Typography>
