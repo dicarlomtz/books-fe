@@ -7,7 +7,9 @@ export const startEmailPasswordLogin = (data) => {
 
     const result = await loginUserWithEmailPassword(data)
 
-    if (result.ok) dispatch(login(result))
+    if (!result.ok) return dispatch(logout())
+
+    dispatch(login(result))
   }
 }
 
@@ -17,7 +19,9 @@ export const startCreatingUserWithEmailPassword = (data) => {
 
     const result = await registerUserWithEmailPassword(data)
 
-    if (result.ok) dispatch(login(result))
+    if (!result.ok) return dispatch(logout())
+
+    dispatch(login(result))
   }
 }
 
@@ -35,7 +39,11 @@ export const initialAuthentication = () => {
     if (authData) {
       const result = await loginUserWithEmailPassword(authData)
 
-      if (result.ok) dispatch(login(result))
+      if (!result.ok) return dispatch(logout())
+
+      dispatch(login(result))
     }
+
+    if (!authData) dispatch(logout())
   }
 }

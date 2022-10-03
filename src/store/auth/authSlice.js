@@ -7,7 +7,7 @@ export const authenticationStatuses = {
 }
 
 const startingState = {
-  status: authenticationStatuses.notAuthenticated,
+  status: authenticationStatuses.authenticating,
   name: null,
   username: null,
   email: null,

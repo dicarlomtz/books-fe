@@ -9,7 +9,7 @@ import { CheckingAuth } from '../ui/views/CheckingAuth'
 export const AppRouter = () => {
   const { status } = useSelector(state => state.auth)
 
-  if (status === authenticationStatuses.checking) return <CheckingAuth />
+  if (status === authenticationStatuses.authenticating) return <CheckingAuth />
 
   return (
     <Routes>
