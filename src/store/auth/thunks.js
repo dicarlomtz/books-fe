@@ -7,7 +7,7 @@ export const startEmailPasswordLogin = (data) => {
 
     const result = await loginUserWithEmailPassword(data)
 
-    if (!result.ok) return dispatch(logout())
+    if (!result.ok) return dispatch(logout(result))
 
     dispatch(login(result))
   }
@@ -19,7 +19,7 @@ export const startCreatingUserWithEmailPassword = (data) => {
 
     const result = await registerUserWithEmailPassword(data)
 
-    if (!result.ok) return dispatch(logout())
+    if (!result.ok) return dispatch(logout(result))
 
     dispatch(login(result))
   }
