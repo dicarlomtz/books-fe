@@ -1,4 +1,6 @@
-# Books FRONTEND HOW TO GUIDE
+# Books-fe
+
+This project serves as a frontent implementation for a books search engine. This project can be use along this [backend implementation](https://github.com/dicarlomtz/books-be)
 
 To run this project, you will need to have installed [NPM](https://docs.npmjs.com/cli/v7/configuring-npm/install) and [YARN](https://yarnpkg.com/getting-started/install)
 
